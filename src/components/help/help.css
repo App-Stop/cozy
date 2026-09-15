@@ -1,0 +1,385 @@
+@reference '../../index.css';
+
+/* Help Center drawer — Figma nodes 1:7666 … 1:8316. */
+
+@keyframes help-fade {
+  from { opacity: 0; }
+}
+
+@keyframes help-slide {
+  from { transform: translateX(100%); }
+}
+
+.help-backdrop {
+  @apply fixed inset-0 z-100 flex justify-end bg-black/50;
+  animation: help-fade 150ms ease-out;
+}
+
+/* 540px panel pinned to the right edge, rounded on the inner side only. */
+.help-panel {
+  @apply relative flex flex-col w-[540px] max-w-full h-full pt-[30px] bg-white outline-none
+         rounded-l-[20px] shadow-[0_0_250px_rgba(0,0,0,0.6)];
+  animation: help-slide 220ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* ---------- Header ---------- */
+
+.help-header {
+  @apply flex items-center justify-between gap-4 shrink-0 px-[30px];
+}
+
+.help-header-title {
+  @apply flex-1 min-w-0 text-center text-[16px] leading-normal font-semibold text-dark-900;
+}
+
+.help-icon-btn {
+  @apply flex items-center justify-center size-[50px] shrink-0 rounded-full bg-white/40 border border-white
+         shadow-[0_0_40px_rgba(0,0,0,0.1)] backdrop-blur-[10px] cursor-pointer
+         hover:bg-primary-light transition-colors;
+}
+
+.help-icon-btn svg {
+  @apply block size-[30px] text-dark-900;
+}
+
+/* ---------- Scrolling body ---------- */
+
+.help-body {
+  @apply flex flex-1 min-h-0 flex-col gap-[30px] overflow-y-auto overscroll-contain;
+}
+
+/* Sections that sit against the panel edge get their own padding, so the grey
+   feedback block below them can run full-bleed. */
+.help-section {
+  @apply flex flex-col gap-5 shrink-0 px-[30px];
+}
+
+.help-section:first-child {
+  @apply pt-5;
+}
+
+.help-section:last-child {
+  @apply pb-[30px];
+}
+
+.help-heading {
+  @apply text-[24px] leading-normal font-semibold text-dark-900;
+}
+
+.help-divider {
+  @apply h-px w-full shrink-0 bg-line border-0;
+}
+
+/* ---------- Search ---------- */
+
+.help-search {
+  @apply flex items-center gap-[10px] h-[50px] shrink-0 px-[10px] bg-white border border-line rounded-full
+         backdrop-blur-[10px] focus-within:border-primary transition-colors;
+}
+
+.help-search svg {
+  @apply block size-6 shrink-0 text-dark-900;
+}
+
+.help-search input {
+  @apply w-full min-w-0 p-0 bg-transparent border-0 outline-none text-[14px] leading-normal text-dark-900
+         placeholder:text-muted-light;
+}
+
+/* ---------- Menu ---------- */
+
+.help-group {
+  @apply flex flex-col gap-[14px];
+}
+
+.help-group-title {
+  @apply text-[16px] leading-normal font-semibold text-dark-900;
+}
+
+.help-item {
+  @apply flex items-center justify-between gap-4 w-full py-[10px] px-[10px] -mx-[10px] rounded-[20px]
+         bg-transparent border-0 text-left cursor-pointer hover:bg-surface transition-colors;
+}
+
+.help-item-label {
+  @apply flex items-center gap-3 min-w-0 text-[16px] leading-normal text-dark-900;
+}
+
+.help-item-label svg {
+  @apply block size-6 shrink-0;
+}
+
+.help-item-caret {
+  @apply block size-5 shrink-0 text-dark-900;
+}
+
+.help-empty {
+  @apply py-[10px] text-[14px] leading-normal text-muted;
+}
+
+/* ---------- Order cards ---------- */
+
+.help-orders {
+  @apply flex flex-col gap-[10px];
+}
+
+.help-order-card {
+  @apply flex flex-col gap-[10px] w-full p-[14px] bg-white border-0 rounded-[20px] text-left cursor-pointer
+         shadow-[0_4px_15px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_20px_rgba(85,76,241,0.18)] transition-shadow;
+}
+
+.help-order-top {
+  @apply flex items-center justify-between gap-5;
+}
+
+.help-order-id {
+  @apply flex-1 min-w-0 text-[16px] leading-normal font-medium text-dark-900;
+}
+
+.help-badge {
+  @apply shrink-0 px-[10px] py-[6px] rounded-full bg-primary-light
+         text-[12px] leading-normal font-medium text-primary;
+}
+
+.help-order-meta {
+  @apply flex items-center justify-between gap-4 text-[14px] leading-normal text-muted;
+}
+
+/* The order summary repeated at the top of every order-scoped screen. */
+.help-order-summary {
+  @apply flex flex-col gap-[10px] pb-5 border-b border-line;
+}
+
+/* ---------- Accordion ---------- */
+
+.help-faqs {
+  @apply flex flex-col gap-[14px];
+}
+
+.help-faq {
+  @apply flex flex-col;
+}
+
+.help-faq + .help-faq {
+  @apply pt-[14px] border-t border-line;
+}
+
+.help-faq-trigger {
+  @apply flex items-center justify-between gap-4 w-full py-[10px] bg-transparent border-0 text-left
+         cursor-pointer text-[16px] leading-normal font-medium text-dark-900;
+}
+
+.help-faq-caret {
+  @apply block size-5 shrink-0 text-dark-900 transition-transform;
+}
+
+.help-faq-trigger[aria-expanded='true'] .help-faq-caret {
+  @apply -scale-y-100;
+}
+
+.help-faq-answer {
+  @apply text-[16px] leading-[22px] text-muted;
+}
+
+/* ---------- Body copy ---------- */
+
+.help-text {
+  @apply text-[16px] leading-[22px] text-dark-900;
+}
+
+.help-text-muted {
+  @apply text-[16px] leading-[22px] text-muted;
+}
+
+/* ---------- Cozy Points header ---------- */
+
+.help-points {
+  @apply flex items-center justify-between gap-5;
+}
+
+.help-points-value {
+  @apply flex items-center gap-[10px] text-[30px] leading-none font-semibold text-dark-900;
+}
+
+.help-points-coin {
+  @apply flex items-center justify-center size-[26px] shrink-0 rounded-full bg-primary text-white;
+}
+
+.help-points-coin svg {
+  @apply block size-4;
+}
+
+.help-points-label {
+  @apply text-[14px] leading-normal text-muted;
+}
+
+.help-points-view {
+  @apply shrink-0 h-[40px] px-5 rounded-full bg-primary border-0 text-[14px] leading-normal font-semibold
+         text-white cursor-pointer hover:bg-primary/90 transition-colors;
+}
+
+/* ---------- Forms ---------- */
+
+.help-field {
+  @apply flex flex-col gap-2 w-full pt-[10px] pb-[12px] px-[12px] bg-white border border-line rounded-[10px]
+         cursor-text focus-within:border-primary transition-colors;
+}
+
+.help-field-label {
+  @apply text-[12px] leading-normal font-medium text-muted;
+}
+
+.help-field input,
+.help-field textarea {
+  @apply w-full min-w-0 p-0 bg-transparent border-0 outline-none resize-none
+         text-[16px] leading-normal text-dark-900 placeholder:text-muted-light;
+}
+
+.help-upload {
+  @apply flex flex-col gap-[10px] p-[10px] rounded-[20px] shadow-[0_4px_15px_rgba(0,0,0,0.1)];
+}
+
+.help-upload-preview {
+  @apply flex items-center justify-center h-[70px] rounded-[10px] bg-surface overflow-hidden;
+}
+
+.help-upload-preview svg {
+  @apply block size-8 text-muted;
+}
+
+.help-upload-preview img {
+  @apply block size-full object-cover;
+}
+
+.help-upload-btn {
+  @apply flex items-center justify-center h-[34px] shrink-0 rounded-full bg-primary-light border-0
+         text-[14px] leading-normal font-medium text-primary cursor-pointer
+         hover:bg-primary/15 transition-colors;
+}
+
+.help-btn {
+  @apply flex items-center justify-center w-full h-[54px] shrink-0 px-5 rounded-full border-0
+         text-[16px] leading-normal font-semibold cursor-pointer transition-colors
+         disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.help-btn-primary {
+  @apply bg-primary text-white enabled:hover:bg-primary/90;
+}
+
+/* ---------- "Was this helpful?" block ---------- */
+
+.help-feedback {
+  @apply flex flex-col gap-5 shrink-0 p-[30px] bg-surface;
+}
+
+.help-feedback-row {
+  @apply flex items-center justify-between gap-4;
+}
+
+.help-feedback-title {
+  @apply text-[16px] leading-normal font-medium text-dark-900;
+}
+
+.help-feedback-votes {
+  @apply flex items-center gap-5 shrink-0;
+}
+
+.help-vote {
+  @apply flex p-0 bg-transparent border-0 cursor-pointer text-dark-900 hover:text-primary transition-colors;
+}
+
+.help-vote[aria-pressed='true'] {
+  @apply text-primary;
+}
+
+.help-vote svg {
+  @apply block size-[26px];
+}
+
+.help-feedback .help-btn {
+  @apply h-[50px] text-[14px];
+}
+
+.help-feedback-sent {
+  @apply text-[14px] leading-normal text-muted;
+}
+
+/* ---------- Footer ---------- */
+
+.help-footer {
+  @apply flex flex-col gap-5 shrink-0 p-[30px];
+}
+
+.help-footer-note {
+  @apply text-[16px] leading-[22px] text-muted text-center;
+}
+
+/* ---------- Chat ---------- */
+
+.help-chat {
+  @apply flex flex-1 min-h-0 flex-col justify-end gap-[60px] overflow-y-auto overscroll-contain pt-[30px];
+}
+
+.help-chat-thread {
+  @apply flex flex-col gap-[6px] shrink-0 pl-[30px] pr-[160px];
+}
+
+.help-chat-bubble {
+  @apply px-[14px] py-[10px] bg-surface text-[14px] leading-[22px] text-dark-900
+         rounded-[10px] rounded-bl-[2px];
+}
+
+/* Only the first bubble in a run keeps its top-left corner rounded. */
+.help-chat-bubble + .help-chat-bubble {
+  @apply rounded-tl-[2px];
+}
+
+.help-chat-byline {
+  @apply flex gap-[6px] text-[12px] leading-normal;
+}
+
+.help-chat-author {
+  @apply font-medium text-dark-900;
+}
+
+.help-chat-time {
+  @apply text-muted;
+}
+
+.help-chat-replies {
+  @apply flex flex-col items-end gap-[10px] shrink-0 pl-[160px] pr-[30px];
+}
+
+.help-chat-replies-title {
+  @apply text-[14px] leading-[22px] font-medium text-primary;
+}
+
+.help-chat-reply {
+  @apply px-[14px] py-[10px] bg-white border border-line-strong text-[14px] leading-[22px] text-dark-900
+         rounded-[10px] rounded-br-[2px] cursor-pointer hover:border-primary hover:text-primary transition-colors;
+}
+
+.help-chat-sent {
+  @apply px-[14px] py-[10px] bg-primary text-[14px] leading-[22px] text-white
+         rounded-[10px] rounded-br-[2px];
+}
+
+.help-chat-compose {
+  @apply flex items-center gap-[10px] shrink-0 m-[30px] h-[50px] pl-[10px] pr-[2px] bg-white border border-line
+         rounded-full backdrop-blur-[10px] focus-within:border-primary transition-colors;
+}
+
+.help-chat-compose input {
+  @apply w-full min-w-0 p-0 bg-transparent border-0 outline-none text-[14px] leading-normal text-dark-900
+         placeholder:text-muted-light;
+}
+
+.help-chat-send {
+  @apply flex items-center justify-center size-[44px] shrink-0 rounded-full bg-primary border-0 text-white
+         cursor-pointer hover:bg-primary/90 transition-colors disabled:opacity-40 disabled:cursor-not-allowed;
+}
+
+.help-chat-send svg {
+  @apply block size-5;
+}

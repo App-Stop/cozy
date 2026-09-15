@@ -6,6 +6,7 @@ import ProductCard from '../components/ProductCard'
 import ModalImage from '../components/modals/ModalImage'
 import PaymentPicker from '../components/checkout/PaymentPicker'
 import OrderDeliveredModal from '../components/checkout/OrderDeliveredModal'
+import HelpCenter from '../components/help/HelpCenter'
 import {
   AppPromoCard,
   InfoCard,
@@ -204,6 +205,8 @@ const Tracking = ({ orderId }) => {
   const stageId = useOrderStage(order?.placedAt)
   const [tipHidden, setTipHidden] = useState(false)
   const [paymentOpen, setPaymentOpen] = useState(false)
+  // Which Help Center screen to open on, or null while it is closed.
+  const [helpScreen, setHelpScreen] = useState(null)
 
   if (!order) return <MissingOrder orderId={orderId} />
 
@@ -253,8 +256,7 @@ const Tracking = ({ orderId }) => {
                 <p className="order-card-title">Need support?</p>
                 <p className="order-card-text">Report or see general solutions to your problem.</p>
               </div>
-              {/* TODO: link to the help centre once it exists. */}
-              <button type="button" className="support-btn">
+              <button type="button" className="support-btn" onClick={() => setHelpScreen('home')}>
                 Help Center
               </button>
             </div>
@@ -273,13 +275,21 @@ const Tracking = ({ orderId }) => {
         </div>
       </div>
 
-      {/* TODO: open the support chat once it exists. */}
-      <button type="button" className="support-chat" aria-label="Chat with support">
+      <button
+        type="button"
+        className="support-chat"
+        aria-label="Chat with support"
+        onClick={() => setHelpScreen('home')}
+      >
         <MessageSquare strokeWidth={1.5} />
         <span className="support-chat-badge" aria-hidden="true">
           1
         </span>
       </button>
+
+      {helpScreen && (
+        <HelpCenter initialScreen={helpScreen} onClose={() => setHelpScreen(null)} />
+      )}
 
       {paymentOpen && (
         <PaymentPicker
