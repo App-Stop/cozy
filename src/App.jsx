@@ -8,12 +8,13 @@ import AppPromo from './components/AppPromo'
 import ProductDetails from './pages/ProductDetails'
 import Checkout from './pages/Checkout'
 import Tracking from './pages/Tracking'
+import Profile from './pages/Profile'
 import { CATEGORIES } from './data/categories'
 import { useHashRoute } from './hooks/useHashRoute'
 
 const App = () => {
   const [category, setCategory] = useState(CATEGORIES[0].id)
-  const { page, productId, orderId } = useHashRoute()
+  const { page, productId, orderId, section } = useHashRoute()
 
   // Switching pages replaces the content, so jump to the top — or to the
   // in-page anchor (e.g. `#menu`) once the home page has rendered it.
@@ -24,7 +25,7 @@ const App = () => {
 
     if (anchor) anchor.scrollIntoView()
     else window.scrollTo(0, 0)
-  }, [page, productId, orderId])
+  }, [page, productId, orderId, section])
 
   return (
     <MainLayout>
@@ -35,6 +36,8 @@ const App = () => {
       {page === 'checkout' && <Checkout />}
 
       {page === 'tracking' && <Tracking key={orderId} orderId={orderId} />}
+
+      {page === 'profile' && <Profile key={section} section={section} />}
 
       {page === 'home' && (
         <>

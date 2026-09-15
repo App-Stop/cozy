@@ -952,8 +952,26 @@ body {
   @apply text-[24px] leading-normal font-medium text-dark-900 text-center;
 }
 
-.navbar-user {
-  @apply text-[16px] leading-normal font-semibold text-white whitespace-nowrap;
+/* Signed-in pill in the navbar — Figma node 1:4095. */
+.navbar-profile {
+  @apply flex items-center gap-[10px] shrink-0 h-[50px] pl-[14px] pr-5 rounded-full bg-white no-underline
+         whitespace-nowrap hover:bg-primary-light transition-colors;
+}
+
+.navbar-profile-icon {
+  @apply block size-7 shrink-0 text-dark-900;
+}
+
+.navbar-profile-copy {
+  @apply flex flex-col;
+}
+
+.navbar-profile-name {
+  @apply text-[16px] leading-normal font-semibold text-dark-900;
+}
+
+.navbar-profile-link {
+  @apply text-[12px] leading-normal text-muted;
 }
 
 @media (prefers-reduced-motion: reduce) {

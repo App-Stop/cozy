@@ -1,0 +1,412 @@
+@reference '../index.css';
+
+/* ---------- Profile pages (Figma nodes 1:3810, 1:4103, 1:4353, 1:4628, 1:4902) ---------- */
+
+.profile-page {
+  @apply flex flex-col;
+}
+
+/* Content sits in a 1120px column, narrower than the 1520px navbar/footer. */
+.profile-container {
+  @apply w-full max-w-[1120px] mx-auto px-6 lg:px-10 xl:px-0;
+}
+
+/* ---------- Hero ---------- */
+
+/* The hero is a full-bleed band with rounded bottom corners. `--profile-hero`
+   colours it; the overview and the white variants only differ by that. */
+.profile-hero {
+  @apply relative overflow-hidden rounded-b-[30px] py-8 lg:py-10 bg-white;
+}
+
+.profile-hero--primary {
+  @apply bg-primary text-white;
+}
+
+/* Figma node 1:3814 — soft lilac glow bleeding in from the top of the band. */
+.profile-hero-glow {
+  @apply absolute -top-40 left-0 w-full h-60 pointer-events-none
+         bg-[radial-gradient(60%_100%_at_70%_100%,rgba(85,76,241,0.35),transparent_70%),radial-gradient(40%_100%_at_15%_100%,rgba(85,76,241,0.25),transparent_70%)]
+         blur-2xl;
+}
+
+.profile-hero-inner {
+  @apply relative flex flex-col gap-[30px];
+}
+
+.profile-hero-top {
+  @apply relative flex items-center gap-[30px];
+}
+
+.profile-back {
+  @apply flex shrink-0 p-0 bg-transparent border-0 cursor-pointer text-current
+         opacity-80 hover:opacity-100 transition-opacity;
+}
+
+.profile-back svg {
+  @apply block size-[30px];
+}
+
+/* Centred on the band, not on the space left of the back button. */
+.profile-hero-title {
+  @apply flex items-center justify-center gap-[6px]
+         sm:absolute sm:inset-x-0 sm:top-1/2 sm:-translate-y-1/2
+         text-[16px] leading-normal font-semibold text-current;
+}
+
+.profile-hero-title svg {
+  @apply block size-5 shrink-0 opacity-80;
+}
+
+.profile-hero-row {
+  @apply flex flex-wrap items-center justify-between gap-5;
+}
+
+.profile-hero-name {
+  @apply text-[26px] sm:text-[32px] leading-normal font-semibold text-dark-900;
+}
+
+.profile-hero-email {
+  @apply text-[16px] leading-normal text-dark-900;
+}
+
+.profile-hero-page-title {
+  @apply text-[26px] sm:text-[32px] leading-normal font-semibold text-dark-900;
+}
+
+/* Glass pill used for "Edit profile". */
+.profile-ghost-btn {
+  @apply flex items-center shrink-0 px-5 py-[10px] rounded-full bg-white/40 border border-white
+         shadow-[0_0_40px_rgba(0,0,0,0.1)] backdrop-blur-[10px]
+         text-[16px] leading-normal font-medium text-dark-900 cursor-pointer
+         hover:bg-primary-light transition-colors;
+}
+
+.profile-primary-btn {
+  @apply flex items-center justify-center shrink-0 h-[47px] px-6 rounded-full bg-primary border-0
+         text-[16px] leading-normal font-medium text-white cursor-pointer
+         hover:bg-primary/90 transition-colors;
+}
+
+/* Balance / points figure centred in the band. */
+.profile-hero-figure {
+  @apply flex flex-col items-center gap-[6px] text-center;
+}
+
+.profile-hero-amount {
+  @apply text-[32px] leading-normal font-bold text-current;
+}
+
+.profile-hero-caption {
+  @apply text-[16px] leading-normal text-current;
+}
+
+/* ---------- Layout ---------- */
+
+.profile-body {
+  @apply pt-5 pb-16 lg:pb-24;
+}
+
+.profile-columns {
+  @apply flex flex-col lg:flex-row items-start gap-10 xl:gap-[60px];
+}
+
+.profile-rail {
+  @apply flex flex-col gap-10 w-full lg:w-[530px] shrink-0;
+}
+
+.profile-main {
+  @apply flex flex-col gap-[14px] w-full lg:flex-1 lg:min-w-0;
+}
+
+.profile-section {
+  @apply flex flex-col gap-[10px];
+}
+
+.profile-section-title {
+  @apply text-[16px] leading-normal font-semibold text-dark-900;
+}
+
+.profile-section-head {
+  @apply flex items-center justify-between gap-4;
+}
+
+.profile-divider {
+  @apply m-0 border-0 border-t border-line;
+}
+
+/* ---------- Tiles ---------- */
+
+.profile-tiles {
+  @apply grid grid-cols-2 gap-[10px];
+}
+
+.profile-tile {
+  @apply flex flex-col justify-center gap-[10px] min-w-0 p-[14px] bg-white rounded-[20px] no-underline
+         shadow-[0_4px_15px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_20px_rgba(85,76,241,0.2)] transition-shadow;
+}
+
+.profile-tile-icon {
+  @apply block size-6 shrink-0 text-dark-900;
+}
+
+.profile-tile-label {
+  @apply text-[16px] leading-normal text-dark-900;
+}
+
+/* A tile whose value sits above the label (Cozy Points). */
+.profile-tile-value {
+  @apply flex items-center gap-1 text-[18px] leading-none font-semibold text-dark-900;
+}
+
+.profile-tile-row {
+  @apply flex items-end justify-between gap-4;
+}
+
+/* ---------- Wide card (wallet balance, payment method) ---------- */
+
+.profile-card {
+  @apply flex items-center justify-between gap-4 w-full p-[14px] bg-white rounded-[20px] no-underline
+         text-left border-0 cursor-pointer shadow-[0_4px_30px_rgba(0,0,0,0.1)]
+         hover:shadow-[0_4px_30px_rgba(85,76,241,0.2)] transition-shadow;
+}
+
+.profile-card-left {
+  @apply flex items-center gap-[10px] min-w-0;
+}
+
+.profile-card-art {
+  @apply block size-8 shrink-0 rounded-md object-cover;
+}
+
+.profile-card-title {
+  @apply text-[16px] leading-normal font-medium text-dark-900;
+}
+
+.profile-card-text {
+  @apply text-[14px] leading-normal text-dark-900/80;
+}
+
+.profile-caret {
+  @apply block size-5 shrink-0 text-dark-900;
+}
+
+/* ---------- Menu rows ---------- */
+
+.profile-row {
+  @apply flex items-center justify-between gap-4 w-full py-[10px] px-[10px] -mx-[10px] rounded-[20px]
+         bg-transparent border-0 no-underline text-left cursor-pointer hover:bg-surface transition-colors;
+}
+
+.profile-row-label {
+  @apply flex items-center gap-3 min-w-0 text-[16px] leading-normal text-dark-900;
+}
+
+.profile-row-label svg {
+  @apply block size-6 shrink-0;
+}
+
+.profile-row--danger .profile-row-label {
+  @apply font-medium text-[#EA0101];
+}
+
+/* ---------- Order cards ---------- */
+
+.profile-orders {
+  @apply flex flex-col gap-[10px];
+}
+
+.profile-order {
+  @apply flex flex-col gap-[10px] w-full p-[14px] bg-white rounded-[20px] text-left border border-transparent
+         shadow-[0_4px_15px_rgba(0,0,0,0.1)];
+}
+
+/* Selectable variant on the Orders page. */
+.profile-order--button {
+  @apply cursor-pointer hover:border-line-strong transition-colors;
+}
+
+.profile-order--selected {
+  @apply border-dark-900;
+}
+
+.profile-order-head {
+  @apply flex flex-col gap-2;
+}
+
+.profile-order-top {
+  @apply flex items-center gap-5 text-[16px] leading-normal font-medium text-dark-900;
+}
+
+.profile-order-id {
+  @apply flex-1 min-w-0 truncate;
+}
+
+.profile-order-meta {
+  @apply text-[14px] leading-normal text-muted;
+}
+
+.profile-order-foot {
+  @apply flex items-center justify-between gap-4;
+}
+
+.profile-rated {
+  @apply flex items-center gap-[2px] text-[14px] leading-normal text-muted;
+}
+
+.profile-rated svg {
+  @apply block size-[14px] text-primary;
+  fill: currentColor;
+}
+
+.profile-rate {
+  @apply flex items-center gap-[6px] text-[14px] leading-normal text-muted;
+}
+
+.profile-rate-stars {
+  @apply flex items-center gap-[6px];
+}
+
+.profile-rate-star {
+  @apply flex p-0 bg-transparent border-0 text-muted-light cursor-pointer
+         hover:text-primary hover:scale-110 transition;
+}
+
+.profile-rate-star svg {
+  @apply block size-5;
+}
+
+.profile-rate-star--filled {
+  @apply text-primary;
+}
+
+.profile-rate-star--filled svg {
+  fill: currentColor;
+}
+
+.profile-reorder {
+  @apply shrink-0 px-[10px] py-2 rounded-full bg-primary border-0
+         text-[12px] leading-normal font-semibold text-white cursor-pointer
+         hover:bg-primary/90 transition-colors;
+}
+
+/* ---------- Transaction / reward rows ---------- */
+
+.profile-list {
+  @apply flex flex-col;
+}
+
+.profile-list-item {
+  @apply flex items-center justify-between gap-4 py-[10px];
+}
+
+.profile-list-item + .profile-list-item {
+  @apply border-t border-line;
+}
+
+.profile-list-left {
+  @apply flex items-center gap-3 min-w-0;
+}
+
+.profile-list-left svg {
+  @apply block size-6 shrink-0 text-dark-900;
+}
+
+.profile-list-label {
+  @apply text-[14px] leading-normal text-dark-900;
+}
+
+.profile-list-date {
+  @apply text-[14px] leading-normal text-muted;
+}
+
+.profile-list-amount {
+  @apply shrink-0 text-[14px] leading-normal text-dark-900;
+}
+
+.profile-list-points {
+  @apply flex items-center gap-1 shrink-0 text-[14px] leading-normal font-medium text-primary;
+}
+
+.profile-pill-btn {
+  @apply shrink-0 h-8 px-[11px] rounded-full bg-surface border-0 text-[14px] leading-normal text-dark-900
+         cursor-pointer hover:bg-primary-light transition-colors;
+}
+
+/* ---------- How to earn ---------- */
+
+.profile-earn {
+  @apply flex flex-col gap-[10px];
+}
+
+.profile-earn-item {
+  @apply flex items-center gap-[10px] px-[10px] py-[14px] bg-primary-light rounded-[20px];
+}
+
+.profile-earn-art {
+  @apply block size-[60px] shrink-0 rounded-[14px] object-cover;
+}
+
+.profile-earn-copy {
+  @apply flex flex-col gap-[6px] min-w-0;
+}
+
+.profile-earn-title {
+  @apply text-[16px] leading-normal font-semibold text-dark-900;
+}
+
+.profile-earn-text {
+  @apply text-[14px] leading-normal text-muted;
+}
+
+/* ---------- Order detail panel ---------- */
+
+.profile-detail {
+  @apply flex flex-col gap-5 w-full lg:w-[530px] shrink-0 pb-5 overflow-hidden
+         bg-white border border-line rounded-[30px] shadow-[0_4px_30px_rgba(0,0,0,0.1)];
+}
+
+/* Figma node 1:4727 — the product floats on a lilac fade. */
+.profile-detail-art {
+  @apply flex items-center justify-center pt-[72px] px-1
+         bg-linear-to-b from-[#E4E7FA] from-50% to-[#E4E7FA]/0;
+}
+
+.profile-detail-art img,
+.profile-detail-art .modal-image-placeholder {
+  @apply block size-[140px] object-contain;
+}
+
+.profile-detail-body {
+  @apply flex flex-col items-center gap-5 px-5;
+}
+
+.profile-detail-head {
+  @apply flex items-center justify-between gap-4 w-full;
+}
+
+.profile-detail-title {
+  @apply text-[24px] leading-normal font-semibold text-dark-900;
+}
+
+.profile-detail-date {
+  @apply text-[16px] leading-normal text-dark-900/80;
+}
+
+.profile-detail-points {
+  @apply flex items-center gap-1 shrink-0 text-[16px] leading-normal font-bold text-primary;
+}
+
+.profile-detail-summary {
+  @apply flex flex-col gap-[14px] w-full py-[10px];
+}
+
+.profile-empty {
+  @apply py-10 text-[16px] leading-normal text-muted text-center;
+}
+
+/* ---------- Favourites grid ---------- */
+
+.profile-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 gap-5 items-start;
+}

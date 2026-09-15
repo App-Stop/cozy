@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import ModalImage from './modals/ModalImage'
 import { useCart } from '../context/cart'
+import { useFavourites } from '../context/favourites'
 import { formatPrice } from '../data/products'
 import { productPath } from '../hooks/useHashRoute'
 import fireIcon from '../assets/product-card/fire.svg'
@@ -13,7 +14,7 @@ import favouriteIcon from '../assets/product-card/favourite.svg'
 // over the whole card so clicking anywhere opens the product page.
 const ProductCard = ({ product }) => {
   const { addItem } = useCart()
-  const [isFavourite, setIsFavourite] = useState(false)
+  const { isFavourite, toggle } = useFavourites()
   const { id, name, image, price, unit, calories, rating, reviews, isNew } = product
 
   return (
@@ -68,8 +69,8 @@ const ProductCard = ({ product }) => {
         type="button"
         className="product-card-fav"
         aria-label={`Save ${name} to favourites`}
-        aria-pressed={isFavourite}
-        onClick={() => setIsFavourite((value) => !value)}
+        aria-pressed={isFavourite(id)}
+        onClick={() => toggle(id)}
       >
         <img src={favouriteIcon} alt="" />
       </button>

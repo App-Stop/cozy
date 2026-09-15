@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Menu, X } from 'lucide-react'
+import { Menu, Smile, X } from 'lucide-react'
 import TrackOrderModal from './modals/TrackOrderModal'
 import SignupModal from './modals/SignupModal'
 import { useFulfilment } from '../context/location'
-import { trackingPath } from '../hooks/useHashRoute'
+import { profilePath, trackingPath } from '../hooks/useHashRoute'
 import logo from '../assets/navbar/logo.svg'
 import locationIcon from '../assets/navbar/location.svg'
 import gpsIcon from '../assets/navbar/gps.svg'
@@ -100,8 +100,15 @@ const Navbar = () => {
     </button>
   )
 
+  // Figma node 1:4095 — signed in, the pill links through to the profile.
   const authControls = user ? (
-    <span className="navbar-user">Hi, {user.name.split(' ')[0]}</span>
+    <a href={profilePath()} className="navbar-profile">
+      <Smile strokeWidth={1.5} className="navbar-profile-icon" />
+      <span className="navbar-profile-copy">
+        <span className="navbar-profile-name">{user.name}</span>
+        <span className="navbar-profile-link">View profile</span>
+      </span>
+    </a>
   ) : (
     <>
       <button type="button" className="navbar-btn-outline">

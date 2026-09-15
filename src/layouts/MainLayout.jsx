@@ -6,19 +6,22 @@ import CartSidebar from '../components/cart/CartSidebar'
 import LocationProvider from '../context/LocationProvider'
 import CartProvider from '../context/CartProvider'
 import OrderProvider from '../context/OrderProvider'
+import FavouritesProvider from '../context/FavouritesProvider'
 
 const MainLayout = ({ children }) => {
   return (
     <OrderProvider>
       <LocationProvider>
         <CartProvider>
-          <div className="app-shell">
-            <Navbar />
-            <main className="app-main">{children}</main>
-            <Footer />
-            <CartPill />
-            <CartSidebar />
-          </div>
+          <FavouritesProvider>
+            <div className="app-shell">
+              <Navbar />
+              <main className="app-main">{children}</main>
+              <Footer />
+              <CartPill />
+              <CartSidebar />
+            </div>
+          </FavouritesProvider>
         </CartProvider>
       </LocationProvider>
     </OrderProvider>
