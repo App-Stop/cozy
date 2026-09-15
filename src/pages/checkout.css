@@ -1,0 +1,775 @@
+@reference '../index.css';
+
+/* ---------- Checkout & tracking layout (Figma nodes 1:3352, 1:5252) ---------- */
+
+.checkout-page,
+.tracking-page {
+  @apply flex flex-col;
+}
+
+.checkout-container {
+  @apply flex flex-col gap-6 lg:gap-[30px] w-full max-w-[1168px] mx-auto px-6 pt-5 pb-16 lg:pb-20;
+}
+
+.checkout-title {
+  @apply text-[24px] leading-normal font-semibold text-dark-900;
+}
+
+.checkout-layout,
+.tracking-layout {
+  @apply flex flex-col lg:flex-row items-stretch lg:items-start gap-10 xl:gap-[60px];
+}
+
+.checkout-main {
+  @apply flex flex-col gap-10 w-full lg:w-[48%] xl:w-[530px] shrink-0;
+}
+
+.checkout-side {
+  @apply flex flex-col gap-10 flex-1 min-w-0 w-full;
+}
+
+.checkout-empty {
+  @apply items-start gap-4 py-16 lg:py-24;
+}
+
+.checkout-empty-text {
+  @apply text-[16px] leading-normal text-muted;
+}
+
+/* ---------- Checkout blocks ---------- */
+
+.checkout-block {
+  @apply flex flex-col gap-[10px] w-full;
+}
+
+.checkout-block-header {
+  @apply flex items-center justify-between gap-4;
+}
+
+.checkout-block-title {
+  @apply text-[16px] leading-normal font-semibold text-dark-900;
+}
+
+.checkout-link {
+  @apply p-0 bg-transparent border-0 text-[16px] leading-normal font-semibold text-primary whitespace-nowrap
+         cursor-pointer hover:underline;
+}
+
+.checkout-stack {
+  @apply flex flex-col gap-[10px];
+}
+
+.checkout-card {
+  @apply w-full bg-white rounded-[20px] shadow-[0_4px_15px_rgba(0,0,0,0.1)];
+}
+
+.checkout-label {
+  @apply text-[12px] leading-normal font-medium text-muted;
+}
+
+.checkout-option-icon {
+  @apply block size-8 shrink-0 object-cover rounded-md;
+}
+
+.checkout-chevron {
+  @apply block size-5 shrink-0 text-dark-900;
+}
+
+.checkout-phone {
+  @apply flex items-center gap-[6px] text-[16px] leading-normal;
+}
+
+/* Delivery address + instructions */
+
+.checkout-card--address {
+  @apply flex flex-col gap-5 p-[14px];
+}
+
+.checkout-address {
+  @apply flex items-center gap-[6px] w-full p-0 bg-transparent border-0 text-left cursor-pointer;
+}
+
+.checkout-address-text {
+  @apply flex flex-col gap-1 flex-1 min-w-0;
+}
+
+.checkout-address-value {
+  @apply text-[16px] leading-normal text-dark-900 truncate;
+}
+
+.checkout-instructions {
+  @apply flex flex-col gap-2 pt-[10px] pb-3 px-3 border border-line rounded-[10px] cursor-text
+         focus-within:border-primary transition-colors;
+}
+
+/* Rows: leave at the door, delivery speed */
+
+.checkout-row {
+  @apply flex items-center gap-[10px] p-[14px];
+}
+
+.checkout-row-label {
+  @apply flex-1 min-w-0 text-[16px] leading-normal text-dark-900;
+}
+
+.checkout-switch {
+  @apply flex items-center w-[50px] h-6 shrink-0 p-[2px] rounded-full bg-line-strong border-0 cursor-pointer
+         transition-colors;
+}
+
+.checkout-switch[aria-checked='true'] {
+  @apply bg-primary;
+}
+
+.checkout-switch-thumb {
+  @apply block w-7 h-5 rounded-full bg-white transition-transform;
+}
+
+.checkout-switch[aria-checked='true'] .checkout-switch-thumb {
+  @apply translate-x-[18px];
+}
+
+.checkout-speed {
+  @apply border-0 text-left cursor-pointer hover:bg-primary-light/40 transition-colors;
+}
+
+.checkout-radio {
+  @apply block size-6 shrink-0 rounded-full border-2 border-muted-light transition-all;
+}
+
+[aria-checked='true'] > .checkout-radio {
+  @apply border-[6px] border-primary;
+}
+
+.checkout-speed-info {
+  @apply flex flex-wrap items-center gap-x-[10px] gap-y-1 flex-1 min-w-0;
+}
+
+.checkout-speed-name {
+  @apply flex items-center gap-[2px] text-[16px] leading-normal font-medium text-dark-900;
+}
+
+.checkout-zap {
+  @apply block size-4 shrink-0 text-primary;
+}
+
+.checkout-speed-eta {
+  @apply text-[14px] leading-normal text-dark-900 opacity-80;
+}
+
+.checkout-speed-extra {
+  @apply text-[14px] leading-normal font-medium text-dark-900;
+}
+
+/* Payment */
+
+.checkout-payment {
+  @apply flex items-center gap-[10px] p-[14px] border-0 text-left cursor-pointer
+         shadow-[0_4px_30px_rgba(0,0,0,0.1)] hover:bg-primary-light/40 transition-colors;
+}
+
+.payment-text {
+  @apply flex flex-col items-start gap-1 flex-1 min-w-0 text-left text-dark-900;
+}
+
+.payment-title {
+  @apply text-[16px] leading-normal font-medium;
+}
+
+.payment-detail {
+  @apply text-[14px] leading-normal opacity-80;
+}
+
+/* Order summary */
+
+.checkout-summary {
+  @apply flex flex-col gap-[14px];
+}
+
+.order-row {
+  @apply flex justify-between gap-4 text-[16px] leading-normal text-dark-900;
+}
+
+.order-row > :first-child {
+  @apply text-muted;
+}
+
+.order-divider {
+  @apply m-0 border-0 border-t border-line;
+}
+
+.checkout-terms {
+  @apply text-[12px] leading-normal text-muted;
+}
+
+.checkout-terms strong {
+  @apply font-semibold text-dark-900;
+}
+
+.checkout-total-block {
+  @apply flex flex-col gap-[14px];
+}
+
+.checkout-total {
+  @apply flex items-center justify-between text-dark-900;
+}
+
+.checkout-total span {
+  @apply text-[16px] leading-normal;
+}
+
+.checkout-total strong {
+  @apply text-[24px] leading-normal font-semibold;
+}
+
+/* App promo card */
+
+.promo-card {
+  @apply relative flex w-full overflow-hidden p-5 rounded-[20px] bg-primary-light;
+}
+
+.promo-card-content {
+  @apply relative z-10 flex flex-col gap-5 w-full sm:w-[62%];
+}
+
+.promo-card-copy {
+  @apply flex flex-col gap-[10px];
+}
+
+.promo-card-title {
+  @apply text-[20px] leading-normal font-bold text-primary;
+}
+
+.promo-card-text {
+  @apply max-w-[337px] text-[14px] leading-normal text-dark-900;
+}
+
+.promo-card-qr-row {
+  @apply flex items-center gap-[10px];
+}
+
+.promo-card-qr {
+  @apply block size-20 shrink-0 object-cover;
+}
+
+.promo-card-qr-label {
+  @apply text-[12px] leading-normal font-medium uppercase text-dark-900;
+}
+
+/* Hand + phone mockup, cropped by the card's right and bottom edges. */
+.promo-card-mockup {
+  @apply hidden sm:block absolute -right-[4%] top-[4%] w-[40%] max-w-[240px] aspect-[447/482]
+         object-contain object-top pointer-events-none;
+}
+
+/* ---------- Order status (hero, glow & animations) ---------- */
+
+/* Figma motion (nodes 1:8480 / 1:8481): the blobs drift and breathe on a 5s loop. */
+@keyframes status-glow-a {
+  50% {
+    transform: translateX(60px) scale(1.25);
+  }
+}
+
+@keyframes status-glow-b {
+  50% {
+    transform: translateX(-50px) scale(0.75);
+  }
+}
+
+/* Node 1:8486 — lifts and tilts once, then rests. */
+@keyframes status-float {
+  0%,
+  60%,
+  100% {
+    transform: none;
+  }
+  30% {
+    transform: translateY(-5px) rotate(-1.5deg);
+  }
+}
+
+/* Node 1:5263 — the same lift, twice per loop. */
+@keyframes status-float-twice {
+  0%,
+  50%,
+  100% {
+    transform: none;
+  }
+  25%,
+  74.26% {
+    transform: translateY(-5px) rotate(-1.5deg);
+  }
+}
+
+/* Node 1:8554 — overshoots to 111% then settles. */
+@keyframes status-pop {
+  0% {
+    transform: scale(0);
+  }
+  55.56% {
+    transform: scale(1.113);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Node 1:5804 — the rider gives a small bob every 5s. */
+@keyframes status-bob {
+  0%,
+  20.41%,
+  100% {
+    transform: none;
+  }
+  10.61% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes order-progress {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.status-glow {
+  @apply absolute inset-0 overflow-hidden pointer-events-none bg-linear-to-b from-primary-light/70 to-transparent to-60%;
+}
+
+.status-glow-blob {
+  @apply absolute rounded-full bg-primary/40 blur-[60px];
+}
+
+.status-glow-blob--a {
+  @apply left-[42%] -top-[114px] size-[214px];
+  animation: status-glow-a 5s ease-in-out infinite;
+}
+
+.status-glow-blob--b {
+  @apply left-[13%] -top-[63px] size-[126px];
+  animation: status-glow-b 5s ease-in-out infinite;
+}
+
+.status-hero {
+  @apply relative z-10 flex flex-col items-center gap-4;
+}
+
+.status-art {
+  @apply block size-[120px] sm:size-[140px] shrink-0 object-cover;
+}
+
+.status-art--float {
+  animation: status-float 5s ease-in-out infinite;
+}
+
+.status-art--float-twice {
+  animation: status-float-twice 5s ease-in-out infinite;
+}
+
+.status-art--pop {
+  animation: status-pop 0.9s linear both;
+}
+
+.status-copy {
+  @apply flex flex-col items-center gap-[6px] text-center text-dark-900;
+}
+
+.status-title {
+  @apply text-[22px] sm:text-[24px] leading-normal font-semibold;
+}
+
+.status-text {
+  @apply text-[16px] leading-normal opacity-80;
+}
+
+/* Tracking: status card */
+
+.status-card {
+  @apply relative flex flex-col items-center justify-end h-[270px] sm:h-[300px] px-4 pb-5 overflow-hidden
+         bg-white border border-line rounded-[30px] shadow-[0_4px_30px_rgba(0,0,0,0.1)];
+}
+
+/* Tracking: live map (pins are placed as a % of the card to match the exported map). */
+.map-status {
+  @apply relative flex flex-col justify-end h-[420px] sm:h-[500px] p-[10px] overflow-hidden rounded-[30px]
+         bg-surface shadow-[0_4px_30px_rgba(0,0,0,0.1)];
+}
+
+.map-status--arrived {
+  @apply h-[320px] sm:h-[360px];
+}
+
+.map-status-image {
+  @apply absolute inset-0 size-full object-cover object-bottom;
+}
+
+.map-status-shade {
+  @apply absolute inset-0 pointer-events-none
+         bg-[linear-gradient(to_top,rgba(0,0,0,0.2)_11.3%,rgba(0,0,0,0)_28.46%)];
+}
+
+/* Anchored by its tip. */
+.map-status-home {
+  @apply absolute block w-[46px] h-12 -translate-x-1/2 -translate-y-full;
+}
+
+.map-status-rider {
+  @apply absolute flex items-center justify-center size-10 -translate-x-1/2 -translate-y-1/2 rounded-full
+         bg-primary text-white;
+}
+
+.map-status-rider svg {
+  @apply block size-6;
+}
+
+.map-status--route .map-status-home {
+  @apply left-[45.8%] top-[57.2%];
+}
+
+.map-status--route .map-status-rider {
+  @apply left-[35.5%] top-[25.4%];
+}
+
+.map-status--arrived .map-status-home {
+  @apply left-1/2 top-[44.4%];
+}
+
+.map-status--arrived .map-status-rider {
+  @apply left-1/2 top-[52.2%];
+}
+
+.map-status-info {
+  @apply relative z-10 flex items-center justify-between gap-4 p-4 bg-white rounded-[20px]
+         shadow-[0_4px_15px_rgba(0,0,0,0.1)];
+}
+
+.map-status-copy {
+  @apply flex flex-col gap-[6px] min-w-0 text-dark-900;
+}
+
+.map-status-title {
+  @apply text-[18px] sm:text-[20px] leading-normal font-semibold;
+}
+
+.map-status-text {
+  @apply text-[14px] sm:text-[16px] leading-normal opacity-80;
+}
+
+.map-status-art {
+  @apply block size-[60px] shrink-0 object-cover;
+}
+
+.map-status--route .map-status-art {
+  animation: status-bob 5s ease-in-out infinite;
+}
+
+.map-status--arrived .map-status-art {
+  @apply w-[74px];
+}
+
+/* ---------- Tracking details ---------- */
+
+.tracking-main,
+.tracking-side {
+  @apply flex flex-col w-full lg:flex-1 min-w-0;
+}
+
+.tracking-main {
+  @apply gap-10;
+}
+
+.tracking-side {
+  @apply gap-[30px];
+}
+
+.tracking-details {
+  @apply flex flex-col gap-[10px];
+}
+
+.order-card {
+  @apply flex flex-col gap-[10px] w-full p-4 bg-white rounded-[20px] shadow-[0_4px_15px_rgba(0,0,0,0.1)];
+}
+
+.order-card-title {
+  @apply text-[16px] leading-normal font-medium text-dark-900;
+}
+
+.order-card-text {
+  @apply text-[16px] leading-normal text-muted;
+}
+
+/* Tip */
+
+.tip-card {
+  @apply gap-[14px] p-[14px] overflow-hidden;
+}
+
+.tip-card-header {
+  @apply flex items-start justify-between gap-[14px];
+}
+
+.tip-card-intro {
+  @apply flex flex-col gap-[10px] min-w-0;
+}
+
+.tip-card-art {
+  @apply block size-[60px] object-cover;
+}
+
+.tip-card-text {
+  @apply mt-1 text-[14px] leading-normal text-dark-900 opacity-80;
+}
+
+.tip-amounts {
+  @apply flex gap-[6px] -mx-[14px] px-[14px] overflow-x-auto;
+  scrollbar-width: none;
+}
+
+.tip-amounts::-webkit-scrollbar {
+  display: none;
+}
+
+.tip-amount {
+  @apply shrink-0 px-4 py-[10px] rounded-full bg-surface border-0 text-[14px] leading-normal text-dark-900
+         cursor-pointer hover:bg-primary-light transition-colors;
+}
+
+.tip-amount[aria-checked='true'] {
+  @apply bg-primary font-semibold text-white hover:bg-primary;
+}
+
+.tip-payment {
+  @apply flex items-center gap-[10px] w-full min-h-16 p-[14px] bg-white border border-line rounded-[10px]
+         cursor-pointer hover:border-primary transition-colors;
+}
+
+/* Support */
+
+.support-card {
+  @apply flex-row items-center gap-5 sm:gap-10;
+}
+
+.support-card-copy {
+  @apply flex flex-col gap-[10px] flex-1 min-w-0;
+}
+
+.support-btn {
+  @apply flex items-center h-[50px] px-5 shrink-0 rounded-full bg-surface border-0 text-[16px] leading-normal
+         font-medium text-dark-900 whitespace-nowrap cursor-pointer hover:bg-primary-light transition-colors;
+}
+
+.support-chat {
+  @apply fixed z-40 right-4 lg:right-20 bottom-24 lg:bottom-10 flex items-center justify-center w-[60px] py-[14px]
+         rounded-full bg-primary border-0 text-white cursor-pointer
+         shadow-[0_10px_30px_rgba(85,76,241,0.35)] hover:bg-primary/90 transition-colors;
+}
+
+.support-chat svg {
+  @apply block size-8;
+}
+
+.support-chat-badge {
+  @apply absolute left-10 top-0 flex items-center justify-center size-5 rounded-full bg-primary-light
+         text-[12px] leading-normal font-bold text-primary;
+}
+
+/* You may also love — compact product cards with a full-width add button. */
+
+.tracking-products-section {
+  @apply flex flex-col gap-5;
+}
+
+.tracking-products-title {
+  @apply text-[24px] leading-normal font-semibold text-dark-900;
+}
+
+.tracking-products {
+  @apply grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 items-start;
+}
+
+.tracking-products .product-card-body {
+  @apply flex-col items-stretch gap-[10px];
+}
+
+.tracking-products .product-card-meta {
+  @apply hidden;
+}
+
+.tracking-products .product-card-name,
+.tracking-products .product-card-price {
+  @apply text-[16px] leading-normal;
+}
+
+.tracking-products .product-card-add {
+  @apply w-full;
+}
+
+/* ---------- Order modals (Figma nodes 1:8477, 1:8545) ---------- */
+
+.order-sheet {
+  @apply relative flex flex-col w-[520px] max-w-full max-h-[calc(100dvh-32px)] overflow-y-auto overflow-x-hidden
+         bg-white border border-line rounded-[30px] shadow-[0_-10px_30px_rgba(0,0,0,0.1)] outline-none;
+  animation: modal-pop 180ms ease-out;
+}
+
+.order-sheet-header {
+  @apply relative flex flex-col items-center justify-end gap-[30px] h-[290px] sm:h-[340px] shrink-0 px-5 pb-5;
+}
+
+.order-sheet-body {
+  @apply flex flex-col gap-[10px] px-4 sm:px-5 pb-5;
+}
+
+.order-sheet-footer {
+  @apply px-4 sm:px-5 pt-5 pb-5;
+}
+
+.order-sheet-link {
+  @apply no-underline;
+}
+
+/* Runs for PLACE_ORDER_DELAY seconds (data/orders.js). */
+.order-progress {
+  @apply relative z-10 w-full h-[6px] rounded-[20px] bg-line overflow-hidden;
+}
+
+.order-progress-bar {
+  @apply block h-full w-0 bg-primary;
+  animation: order-progress 5s linear forwards;
+}
+
+/* Cozy Points */
+
+.points-banner {
+  @apply flex items-center justify-center gap-[10px] w-full p-[14px] rounded-[20px] bg-primary text-white;
+}
+
+.points-amount {
+  @apply flex items-center gap-1 text-[16px] leading-normal font-bold;
+}
+
+.points-label {
+  @apply text-[14px] leading-normal;
+}
+
+.points-icon {
+  @apply flex items-center justify-center size-5 shrink-0 p-[2.5px] rounded-full bg-white text-primary;
+}
+
+.points-icon svg {
+  @apply block size-full;
+}
+
+.points-icon--inverse {
+  @apply size-[18px] p-[2.3px] bg-primary text-white;
+}
+
+.app-points {
+  @apply flex items-center gap-5 w-full p-4 bg-white rounded-[20px] shadow-[0_4px_15px_rgba(0,0,0,0.1)];
+}
+
+.app-points-copy {
+  @apply flex flex-col gap-[10px] flex-1 min-w-0;
+}
+
+.app-points-title {
+  @apply flex flex-wrap items-center gap-x-[6px] gap-y-1 text-[16px] leading-normal font-bold text-dark-900;
+}
+
+.app-points-bonus {
+  @apply inline-flex items-center gap-1 text-primary;
+}
+
+.app-points-text {
+  @apply text-[14px] leading-normal text-muted;
+}
+
+.app-points-qr {
+  @apply block size-[70px] shrink-0 object-cover;
+}
+
+/* Rating */
+
+.rating-card {
+  @apply flex flex-col items-center gap-5 w-full p-4 bg-white rounded-[20px] shadow-[0_4px_15px_rgba(0,0,0,0.1)];
+}
+
+.rating-stars {
+  @apply flex gap-[10px];
+}
+
+.rating-star {
+  @apply flex p-0 bg-transparent border-0 text-muted-light cursor-pointer hover:scale-110 transition;
+}
+
+.rating-star svg {
+  @apply block size-8;
+}
+
+.rating-star--filled {
+  @apply text-primary;
+}
+
+.rating-star--filled svg {
+  fill: currentColor;
+}
+
+.rating-comment {
+  @apply flex flex-col gap-2 w-full pt-[10px] pb-3 px-3 border border-line rounded-[10px] cursor-text
+         focus-within:border-primary transition-colors;
+}
+
+.rating-comment textarea {
+  @apply w-full min-w-0 p-0 bg-transparent border-0 outline-none resize-none text-[16px] leading-normal
+         text-dark-900 placeholder:text-muted/60;
+}
+
+/* ---------- Payment modals (Figma nodes 1:8424, 1:8653) ---------- */
+
+.pay-options {
+  @apply flex flex-col gap-[30px];
+}
+
+.pay-option {
+  @apply flex items-center gap-[10px] w-full p-0 bg-transparent border-0 cursor-pointer;
+}
+
+.pay-option-icon {
+  @apply block size-11 shrink-0 object-cover rounded-md;
+}
+
+.pay-option-arrow {
+  @apply block size-5 shrink-0 text-dark-900;
+}
+
+.pay-brands {
+  @apply flex items-center gap-[6px];
+}
+
+.pay-brand {
+  @apply block w-6 h-[15px] object-contain rounded-[2px];
+}
+
+.card-fields-row {
+  @apply grid grid-cols-2 gap-[10px];
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .status-glow-blob,
+  .status-art--float,
+  .status-art--float-twice,
+  .status-art--pop,
+  .map-status--route .map-status-art,
+  .order-sheet {
+    animation: none;
+  }
+
+  .order-progress-bar {
+    animation-duration: 0s;
+    animation-delay: 4.99s;
+  }
+}

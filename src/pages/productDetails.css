@@ -1,0 +1,189 @@
+@reference '../index.css';
+
+/* ---------- Product details (Figma node 1:2615) ---------- */
+
+.product-details {
+  @apply flex flex-col;
+}
+
+/* Hero — the tint fades out behind the product info. */
+
+.pd-hero {
+  @apply flex flex-col lg:flex-row items-center lg:items-start gap-6 lg:gap-10 2xl:gap-[60px]
+         rounded-[20px] overflow-hidden;
+  background-image: linear-gradient(90deg, #eef0fd 16.437%, rgba(238, 240, 253, 0) 50.813%);
+}
+
+.pd-image {
+  @apply block w-full max-w-[360px] lg:max-w-[440px] 2xl:max-w-[600px] aspect-square shrink-0 object-cover;
+}
+
+.pd-info {
+  @apply flex flex-col items-start gap-[30px] flex-1 min-w-0 w-full pb-10 lg:py-10;
+}
+
+.pd-heading {
+  @apply flex flex-col items-start gap-[10px] w-full;
+}
+
+.pd-title {
+  @apply text-[28px] lg:text-[36px] leading-normal font-medium text-dark-900;
+}
+
+.pd-description {
+  @apply max-w-[860px] text-[16px] leading-[22px] text-muted;
+}
+
+/* Calories & rating */
+
+.pd-chips {
+  @apply flex flex-wrap items-start gap-[10px];
+}
+
+.pd-chip {
+  @apply flex items-center px-3 py-[10px] rounded-[60px] text-[14px] leading-normal text-dark-900 whitespace-nowrap;
+}
+
+.pd-chip img {
+  @apply block size-4 shrink-0;
+}
+
+.pd-chip--calories {
+  @apply gap-[6px] bg-[#FBEBDE];
+}
+
+.pd-chip--rating {
+  @apply gap-[2px] bg-primary-light;
+}
+
+.pd-chip-muted {
+  @apply text-black opacity-40;
+}
+
+/* Price, quantity & actions */
+
+.pd-purchase {
+  @apply flex flex-col items-start gap-5;
+}
+
+.pd-price-row {
+  @apply flex items-center gap-5;
+}
+
+.pd-price {
+  @apply flex items-center gap-1 text-[24px] leading-normal font-medium text-dark-900 whitespace-nowrap;
+}
+
+.pd-unit {
+  @apply text-[16px] font-normal opacity-40;
+}
+
+.pd-stepper {
+  @apply flex items-center justify-center gap-[14px] h-11 px-[14px] rounded-full bg-surface;
+}
+
+.pd-stepper button {
+  @apply flex p-0 bg-transparent border-0 cursor-pointer disabled:opacity-30 disabled:cursor-default;
+}
+
+.pd-stepper img,
+.pd-stepper svg {
+  @apply block size-5;
+}
+
+.pd-stepper-count {
+  @apply min-w-[7px] text-center text-[14px] leading-normal font-semibold text-dark-900;
+}
+
+.pd-actions {
+  @apply flex items-center gap-[10px];
+}
+
+.pd-add {
+  @apply flex items-center justify-center w-[249px] max-w-full h-[54px] px-5 rounded-full border-0 bg-primary
+         text-[16px] leading-normal font-semibold text-white whitespace-nowrap cursor-pointer
+         hover:bg-primary/90 active:scale-[0.98] transition;
+}
+
+.pd-fav {
+  @apply size-[54px] shrink-0 p-0 rounded-full bg-transparent border-0 cursor-pointer
+         hover:bg-primary-light transition-colors;
+}
+
+.pd-fav[aria-pressed='true'] {
+  @apply bg-primary-light;
+}
+
+.pd-fav img {
+  @apply block size-full;
+}
+
+/* Content blocks */
+
+.pd-block {
+  @apply flex flex-col items-start gap-[10px] w-full;
+}
+
+.pd-block-title {
+  @apply text-[16px] leading-normal font-medium text-dark-900;
+}
+
+/* Frequently bought together */
+
+.pd-extras {
+  @apply flex flex-wrap items-start gap-[10px];
+}
+
+.pd-extra {
+  @apply flex items-end justify-center gap-5 p-[10px] bg-white border border-line rounded-[10px];
+}
+
+.pd-extra-info {
+  @apply flex flex-col items-start gap-[6px] text-[14px] leading-normal font-medium text-dark-900 whitespace-nowrap;
+}
+
+.pd-extra-image {
+  @apply block size-10 object-contain;
+}
+
+.pd-round-btn {
+  @apply flex items-center justify-center size-8 shrink-0 rounded-full bg-surface border-0 cursor-pointer
+         hover:bg-primary-light transition-colors;
+}
+
+.pd-round-btn img {
+  @apply block size-5;
+}
+
+/* Ingredients */
+
+.pd-ingredients {
+  @apply flex flex-col gap-[10px] list-none text-[16px] leading-5 text-[#373737];
+}
+
+/* Allergens */
+
+.pd-allergens {
+  @apply flex flex-wrap items-start gap-[6px] list-none;
+}
+
+.pd-allergen {
+  @apply flex flex-col items-center justify-center gap-[6px] size-20 rounded-full
+         text-[12px] leading-normal font-medium text-dark-900 text-center;
+}
+
+.pd-allergen-icon {
+  @apply block size-8 shrink-0 text-dark-900;
+}
+
+/* Related products */
+
+.pd-section {
+  @apply flex flex-col gap-5 py-16 lg:py-20;
+}
+
+/* Unknown product */
+
+.pd-missing {
+  @apply flex flex-col items-start gap-6 py-24;
+}
