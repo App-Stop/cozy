@@ -26,10 +26,17 @@ import {
 } from '../components/profile/ProfileParts'
 import { useCart } from '../context/cart'
 import { useFavourites } from '../context/favourites'
+import { useFulfilment } from '../context/location'
+import {
+  EditProfileModal,
+  NotificationsModal,
+  WithdrawSuccessModal,
+} from '../components/profile/ProfileModals'
 import { PRODUCTS, formatPrice } from '../data/products'
 import {
   EARN_METHODS,
   POINT_REWARDS,
+  POINTS_PER_DOLLAR,
   PROFILE,
   PROFILE_ORDERS,
   WALLET_TRANSACTIONS,
@@ -49,19 +56,19 @@ const useReorder = () => {
 
 /* ---------- Overview (Figma node 1:3810) ---------- */
 
-const Overview = ({ orders, onRate, onOpenHelp }) => {
+const Overview = ({ account, orders, onRate, onOpenHelp, onOpenModal }) => {
   const reorder = useReorder()
+  const { openAddressBook } = useFulfilment()
 
   return (
     <>
       <ProfileHero back={false} glow>
         <div className="profile-hero-row">
           <div>
-            <h1 className="profile-hero-name">{PROFILE.name}</h1>
-            <p className="profile-hero-email">{PROFILE.email}</p>
+            <h1 className="profile-hero-name">{account.name}</h1>
+            <p className="profile-hero-email">{account.email}</p>
           </div>
-          {/* TODO: open the edit profile form once it exists. */}
-          <button type="button" className="profile-ghost-btn">
+          <button type="button" className="profile-ghost-btn" onClick={() => onOpenModal('edit')}>
             Edit profile
           </button>
         </div>
@@ -81,7 +88,7 @@ const Overview = ({ orders, onRate, onOpenHelp }) => {
                 <span className="profile-card-left">
                   <ModalImage name="wallet-coin" className="profile-card-art" />
                   <span>
-                    <span className="profile-card-title">{formatPrice(PROFILE.balance)}</span>
+                    <span className="profile-card-title">{formatPrice(account.balance)}</span>
                     <span className="profile-card-text block">Available balance</span>
                   </span>
                 </span>
@@ -93,10 +100,14 @@ const Overview = ({ orders, onRate, onOpenHelp }) => {
 
             <section className="profile-section">
               <h2 className="profile-section-title">Manage</h2>
-              {/* TODO: link these to the account settings pages once they exist. */}
-              <ProfileRow icon={MapPin} label="Addresses" onClick={() => {}} />
+              <ProfileRow icon={MapPin} label="Addresses" onClick={openAddressBook} />
+              {/* TODO: link to the payment methods page once it exists. */}
               <ProfileRow icon={Wallet} label="Payment Method" onClick={() => {}} />
-              <ProfileRow icon={Bell} label="Notifications" onClick={() => {}} />
+              <ProfileRow
+                icon={Bell}
+                label="Notifications"
+                onClick={() => onOpenModal('notifications')}
+              />
             </section>
 
             <section className="profile-section">
@@ -129,10 +140,10 @@ const Overview = ({ orders, onRate, onOpenHelp }) => {
 
 /* ---------- Loyalty Wallet (Figma node 1:4103) ---------- */
 
-const WalletSection = () => (
+const WalletSection = ({ account }) => (
   <>
     <ProfileHero tone="primary" title="Loyalty Wallet">
-      <ProfileFigure amount={formatPrice(PROFILE.balance)} caption="Available Balance" />
+      <ProfileFigure amount={formatPrice(account.balance)} caption="Available Balance" />
     </ProfileHero>
 
     <div className="profile-body profile-container">
@@ -144,7 +155,7 @@ const WalletSection = () => (
                 <span>
                   <span className="profile-tile-value">
                     <PointsIcon size={24} />
-                    {PROFILE.points}
+                    {account.points}
                   </span>
                   <span className="profile-tile-label block mt-[10px]">Cozy Points</span>
                 </span>
@@ -193,19 +204,23 @@ const WalletSection = () => (
 
 /* ---------- Cozy Points (Figma node 1:4353) ---------- */
 
-const PointsSection = () => (
+const PointsSection = ({ account, onWithdraw }) => (
   <>
-    <ProfileHero title="Cozy Points">
+    <ProfileHero title="Cozy Points" backHref={profilePath('wallet')}>
       <div className="profile-hero-row">
         <div>
           <p className="profile-hero-name flex items-center gap-[10px]">
             <PointsIcon size={32} />
-            {PROFILE.points}
+            {account.points}
           </p>
           <p className="profile-hero-email">Cozy Points</p>
         </div>
-        {/* TODO: move the balance into the wallet once the points API exists. */}
-        <button type="button" className="profile-primary-btn">
+        <button
+          type="button"
+          className="profile-primary-btn"
+          disabled={account.points === 0}
+          onClick={onWithdraw}
+        >
           Withdraw to wallet
         </button>
       </div>
@@ -406,6 +421,19 @@ const Profile = ({ section = 'overview' }) => {
   // Ratings and comments live here until the account API exists.
   const [orders, setOrders] = useState(PROFILE_ORDERS)
   const [helpOpen, setHelpOpen] = useState(false)
+  // Account details and settings also stay local until the account API exists.
+  const [account, setAccount] = useState(PROFILE)
+  const [notifications, setNotifications] = useState({
+    orderStatus: true,
+    riderUpdates: true,
+    rateOrder: false,
+    promotions: false,
+    pointsUpdates: true,
+    securityUpdates: true,
+  })
+  // 'edit' | 'notifications' | null, or { withdrawn, balance } after a withdrawal.
+  const [modal, setModal] = useState(null)
+  const closeModal = () => setModal(null)
 
   const update = (id, changes) =>
     setOrders((list) =>
@@ -415,19 +443,58 @@ const Profile = ({ section = 'overview' }) => {
   const handleRate = (id, rating) => update(id, { rating })
   const handleComment = (id, comment) => update(id, { comment })
 
+  const handleWithdraw = () => {
+    const points = account.points
+    const balance = Math.round((account.balance + points / POINTS_PER_DOLLAR) * 100) / 100
+    setAccount((current) => ({ ...current, points: 0, balance }))
+    setModal({ withdrawn: points, balance })
+  }
+
   return (
     <div className="profile-page">
-      {section === 'wallet' && <WalletSection />}
-      {section === 'points' && <PointsSection />}
+      {section === 'wallet' && <WalletSection account={account} />}
+      {section === 'points' && <PointsSection account={account} onWithdraw={handleWithdraw} />}
       {section === 'orders' && (
         <OrdersSection orders={orders} onRate={handleRate} onComment={handleComment} />
       )}
       {section === 'favourites' && <FavouritesSection />}
       {section !== 'wallet' && section !== 'points' && section !== 'orders' && section !== 'favourites' && (
-        <Overview orders={orders} onRate={handleRate} onOpenHelp={() => setHelpOpen(true)} />
+        <Overview
+          account={account}
+          orders={orders}
+          onRate={handleRate}
+          onOpenHelp={() => setHelpOpen(true)}
+          onOpenModal={setModal}
+        />
       )}
 
       {helpOpen && <HelpCenter onClose={() => setHelpOpen(false)} />}
+
+      {modal === 'edit' && (
+        <EditProfileModal
+          account={account}
+          onSave={(details) => {
+            setAccount((current) => ({ ...current, ...details }))
+            closeModal()
+          }}
+          onClose={closeModal}
+        />
+      )}
+
+      {modal === 'notifications' && (
+        <NotificationsModal
+          settings={notifications}
+          onSave={(settings) => {
+            setNotifications(settings)
+            closeModal()
+          }}
+          onClose={closeModal}
+        />
+      )}
+
+      {modal?.withdrawn != null && (
+        <WithdrawSuccessModal points={modal.withdrawn} balance={modal.balance} onClose={closeModal} />
+      )}
     </div>
   )
 }

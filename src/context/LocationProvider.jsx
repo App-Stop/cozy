@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import DeliverModal from '../components/modals/DeliverModal'
 import AddressFormModal from '../components/modals/AddressFormModal'
+import AddressBookModal from '../components/modals/AddressBookModal'
 import { LocationContext } from './location'
 import { SAMPLE_ADDRESSES, describeFulfilment } from '../data/locations'
 
@@ -9,8 +10,10 @@ import { SAMPLE_ADDRESSES, describeFulfilment } from '../data/locations'
 const LocationProvider = ({ children }) => {
   const [addresses, setAddresses] = useState(SAMPLE_ADDRESSES)
   const [fulfilment, setFulfilment] = useState(null)
-  // 'deliver' | 'address-form' | null
+  // 'deliver' | 'address-book' | 'address-form' | null
   const [activeModal, setActiveModal] = useState(null)
+  // Modal the address form returns to: the picker, or the profile's address book.
+  const [formReturn, setFormReturn] = useState('deliver')
   const [editingAddress, setEditingAddress] = useState(null)
   // Tab to open the picker on ('delivery' | 'pickup'); null follows the current choice.
   const [pickerTab, setPickerTab] = useState(null)
@@ -22,8 +25,9 @@ const LocationProvider = ({ children }) => {
     closeModal()
   }
 
-  const openAddressForm = (address = null) => {
+  const openAddressForm = (address = null, returnTo = 'deliver') => {
     setEditingAddress(address)
+    setFormReturn(returnTo)
     setPickerTab('delivery')
     setActiveModal('address-form')
   }
@@ -36,13 +40,13 @@ const LocationProvider = ({ children }) => {
       setAddresses((list) => [...list, { ...address, id }])
       setFulfilment({ type: 'delivery', addressId: id })
     }
-    setActiveModal('deliver')
+    setActiveModal(formReturn)
   }
 
   const deleteAddress = (id) => {
     setAddresses((list) => list.filter((item) => item.id !== id))
     if (fulfilment?.addressId === id) setFulfilment(null)
-    setActiveModal('deliver')
+    setActiveModal(formReturn)
   }
 
   const value = {
@@ -52,6 +56,7 @@ const LocationProvider = ({ children }) => {
       setPickerTab(tab)
       setActiveModal('deliver')
     },
+    openAddressBook: () => setActiveModal('address-book'),
   }
 
   return (
@@ -73,12 +78,23 @@ const LocationProvider = ({ children }) => {
         />
       )}
 
+      {activeModal === 'address-book' && (
+        <AddressBookModal
+          addresses={addresses}
+          selectedAddressId={fulfilment?.type === 'delivery' ? fulfilment.addressId : null}
+          onSelect={(addressId) => setFulfilment({ type: 'delivery', addressId })}
+          onEdit={(address) => openAddressForm(address, 'address-book')}
+          onAdd={() => openAddressForm(null, 'address-book')}
+          onClose={closeModal}
+        />
+      )}
+
       {activeModal === 'address-form' && (
         <AddressFormModal
           address={editingAddress}
           onSubmit={saveAddress}
           onDelete={deleteAddress}
-          onClose={() => setActiveModal('deliver')}
+          onClose={() => setActiveModal(formReturn)}
         />
       )}
     </LocationContext.Provider>

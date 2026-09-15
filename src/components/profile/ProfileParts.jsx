@@ -20,7 +20,8 @@ export const ProfileCaret = () => <ChevronRight className="profile-caret" stroke
 
 // Full-bleed band at the top of every profile page. `tone` paints it primary
 // (the wallet); `title` is the small centred label, `children` the band body.
-export const ProfileHero = ({ tone, title, back = true, glow = false, children }) => (
+// `backHref` is where the back arrow leads — the overview unless given.
+export const ProfileHero = ({ tone, title, back = true, backHref = profilePath(), glow = false, children }) => (
   <header className={`profile-hero ${tone === 'primary' ? 'profile-hero--primary' : ''}`}>
     {glow && <span className="profile-hero-glow" aria-hidden="true" />}
 
@@ -29,7 +30,7 @@ export const ProfileHero = ({ tone, title, back = true, glow = false, children }
         {(back || title) && (
           <div className="profile-hero-top">
             {back && (
-              <a href={profilePath()} className="profile-back" aria-label="Back to profile">
+              <a href={backHref} className="profile-back" aria-label="Back">
                 <ChevronLeft strokeWidth={1.5} />
               </a>
             )}

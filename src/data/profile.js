@@ -6,10 +6,33 @@ import { PRODUCTS, VAT_RATE } from './products'
 export const PROFILE = {
   name: 'John Doe',
   email: 'john@gmail.com',
+  phone: '(555) 214 12312',
   balance: 10.5,
   points: 456,
   card: { brand: 'Mastercard', image: 'card-mastercard', last4: '2134' },
 }
+
+// Cozy Points convert into wallet credit at this rate.
+export const POINTS_PER_DOLLAR = 100
+
+export const NOTIFICATION_GROUPS = [
+  {
+    title: 'Orders & Updates',
+    options: [
+      { key: 'orderStatus', label: 'Order status' },
+      { key: 'riderUpdates', label: 'Rider updates' },
+      { key: 'rateOrder', label: 'Rate order' },
+    ],
+  },
+  {
+    title: 'From Cozy',
+    options: [
+      { key: 'promotions', label: 'Promotions & Offers' },
+      { key: 'pointsUpdates', label: 'Cozy points updates' },
+      { key: 'securityUpdates', label: 'Security updates' },
+    ],
+  },
+]
 
 // Products shown on the Favourites page before the customer saves their own.
 export const DEFAULT_FAVOURITE_IDS = [
