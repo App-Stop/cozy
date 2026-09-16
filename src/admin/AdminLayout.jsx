@@ -11,8 +11,7 @@ const AdminLayout = ({ page, session, onLogout, children }) => (
   <div className="admin-shell">
     <aside className="admin-sidebar">
       <a href={adminPaths.dashboard} className="admin-brand" onClick={adminLinkClick(adminPaths.dashboard)}>
-        <img src={logo} alt="cozy" className="admin-logo" />
-        <span className="admin-badge">Admin</span>
+        <img src={logo} alt="cozy" className="admin-logo admin-logo--sidebar" />
       </a>
 
       <nav className="admin-nav">

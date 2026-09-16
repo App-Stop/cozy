@@ -26,6 +26,11 @@
   @apply block h-8 w-auto;
 }
 
+/* The logo is white, so it sits on a primary tile on the white login card. */
+.admin-login-head .admin-logo {
+  @apply box-content px-3 py-2 rounded-[14px] bg-primary;
+}
+
 .admin-badge {
   @apply inline-flex items-center gap-1 px-[10px] py-1 rounded-full bg-primary-light
          text-[12px] leading-normal font-semibold text-primary;
@@ -43,16 +48,16 @@
 
 .admin-sidebar {
   @apply flex lg:flex-col items-center lg:items-stretch gap-3 lg:gap-8 px-4 py-3 lg:p-6
-         lg:w-[260px] lg:shrink-0 lg:h-screen lg:sticky lg:top-0 bg-white
-         border-b lg:border-b-0 lg:border-r border-line;
+         lg:w-[260px] lg:shrink-0 lg:h-screen lg:sticky lg:top-0 bg-primary text-white;
 }
 
 .admin-brand {
   @apply flex items-center gap-2 shrink-0 no-underline;
 }
 
-.admin-brand .admin-badge {
-  @apply hidden sm:inline-flex;
+/* Native logo size (72.5×44) on desktop, trimmed to fit the mobile top bar. */
+.admin-logo--sidebar {
+  @apply h-9 lg:h-11;
 }
 
 .admin-nav {
@@ -61,20 +66,34 @@
 
 .admin-nav-link {
   @apply flex items-center gap-3 px-3 lg:px-4 py-2 lg:py-3 rounded-full no-underline
-         text-[14px] lg:text-[16px] leading-normal font-medium text-muted
-         hover:bg-primary-light hover:text-primary transition-colors;
+         text-[14px] lg:text-[16px] leading-normal font-medium text-white/75
+         hover:bg-white/10 hover:text-white transition-colors;
 }
 
 .admin-nav-link svg {
   @apply hidden sm:block size-5 shrink-0;
 }
 
+/* Active item mirrors the navbar's solid white button. */
 .admin-nav-link[aria-current='page'] {
-  @apply bg-primary text-white hover:bg-primary hover:text-white;
+  @apply bg-white font-semibold text-primary hover:bg-white hover:text-primary;
 }
 
 .admin-account {
-  @apply flex items-center gap-3 ml-auto lg:ml-0 lg:pt-4 lg:border-t border-line;
+  @apply flex items-center gap-3 ml-auto lg:ml-0 lg:pt-4 lg:border-t border-white/20;
+}
+
+.admin-sidebar .admin-avatar {
+  @apply bg-white/15 text-white;
+}
+
+.admin-sidebar .admin-account-email {
+  @apply text-white/70;
+}
+
+/* Outlined like the navbar's "Log in" button. */
+.admin-sidebar .admin-icon-btn {
+  @apply bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white;
 }
 
 .admin-account-text {

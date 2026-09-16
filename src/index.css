@@ -20,6 +20,9 @@
   --color-subtle : #9C9C9C;
   --color-placeholder : #B6B6B6;
   --font-primary : 'Inter', 'sans-serif';
+  /* Full-size navbar and single-row footer only fit from here — at 2xl the
+     200px page gutters leave too little room. */
+  --breakpoint-3xl : 112.5rem;
 
 }
 
@@ -71,7 +74,7 @@ body {
   @apply relative flex items-end lg:items-center w-full overflow-hidden bg-dark-900
          h-[calc(100svh-130px)] min-h-[440px] max-h-[640px]
          lg:h-[calc(100svh-62px)] lg:min-h-[520px] lg:max-h-[800px]
-         2xl:h-[calc(100svh-78px)];
+         3xl:h-[calc(100svh-78px)];
 }
 
 .hero-media {
@@ -405,11 +408,11 @@ body {
 
 .footer-top {
   @apply flex flex-col gap-10 lg:grid lg:grid-cols-2 lg:gap-x-16 lg:gap-y-12
-         2xl:flex 2xl:flex-row 2xl:items-start 2xl:gap-20;
+         3xl:flex 3xl:flex-row 3xl:items-start 3xl:gap-20;
 }
 
 .footer-brand {
-  @apply flex flex-col items-start gap-4 w-full max-w-[360px] 2xl:w-[360px] shrink-0;
+  @apply flex flex-col items-start gap-4 w-full max-w-[360px] 3xl:w-[360px] shrink-0;
 }
 
 .footer-logo {
@@ -435,7 +438,7 @@ body {
 .footer-nav {
   @apply grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-8 min-w-0
          lg:col-span-2 lg:order-last lg:pt-10 lg:border-t lg:border-white/15
-         2xl:order-none 2xl:col-span-1 2xl:pt-0 2xl:border-t-0 2xl:flex 2xl:flex-1 2xl:justify-start 2xl:gap-16;
+         3xl:order-none 3xl:col-span-1 3xl:pt-0 3xl:border-t-0 3xl:flex 3xl:flex-1 3xl:justify-start 3xl:gap-16;
 }
 
 .footer-column {
@@ -456,7 +459,7 @@ body {
 }
 
 .footer-newsletter {
-  @apply flex flex-col items-start gap-3 w-full max-w-[420px] lg:justify-self-end 2xl:w-[360px] shrink-0;
+  @apply flex flex-col items-start gap-3 w-full max-w-[420px] lg:justify-self-end 3xl:w-[360px] shrink-0;
 }
 
 .footer-form {
@@ -518,11 +521,11 @@ body {
 }
 
 .navbar-inner {
-  @apply w-full px-6 lg:px-20 2xl:px-50 py-3 lg:py-[10px] 2xl:py-[14px] flex items-center justify-between gap-4 2xl:gap-6;
+  @apply w-full px-6 lg:px-20 2xl:px-50 py-3 lg:py-[10px] 3xl:py-[14px] flex items-center justify-between gap-4 3xl:gap-6;
 }
 
 .navbar-left {
-  @apply flex items-center gap-10 lg:gap-5 2xl:gap-10 shrink-0;
+  @apply flex items-center gap-10 lg:gap-5 3xl:gap-10 shrink-0;
 }
 
 .navbar-actions {
@@ -530,7 +533,7 @@ body {
 }
 
 .navbar-right {
-  @apply flex items-center gap-5 lg:gap-3 2xl:gap-5 shrink-0;
+  @apply flex items-center gap-5 lg:gap-3 3xl:gap-5 shrink-0;
 }
 
 .navbar-brand {
@@ -538,11 +541,11 @@ body {
 }
 
 .navbar-logo {
-  @apply h-11 w-[72.5px] lg:h-9 lg:w-[59.3px] 2xl:h-11 2xl:w-[72.5px] block;
+  @apply h-11 w-[72.5px] lg:h-9 lg:w-[59.3px] 3xl:h-11 3xl:w-[72.5px] block;
 }
 
 .navbar-icon {
-  @apply block size-6 lg:size-5 2xl:size-6 shrink-0;
+  @apply block size-6 lg:size-5 3xl:size-6 shrink-0;
 }
 
 .navbar-divider {
@@ -558,26 +561,26 @@ body {
 }
 
 .navbar-action-label {
-  @apply text-[12px] xl:text-[11px] 2xl:text-[12px] leading-normal font-normal text-white opacity-80;
+  @apply text-[12px] xl:text-[11px] 3xl:text-[12px] leading-normal font-normal text-white opacity-80;
 }
 
 .navbar-action-value {
-  @apply text-[16px] xl:text-[14px] 2xl:text-[16px] leading-normal font-semibold text-white;
+  @apply text-[16px] xl:text-[14px] 3xl:text-[16px] leading-normal font-semibold text-white;
 }
 
 .navbar-address-value {
-  @apply max-w-[220px] xl:max-w-[150px] 2xl:max-w-[220px] truncate;
+  @apply max-w-[220px] xl:max-w-[150px] 3xl:max-w-[220px] truncate;
 }
 
 /* Search */
 
 .navbar-search {
-  @apply flex items-center gap-[10px] lg:gap-2 2xl:gap-[10px] h-[50px] lg:h-[42px] 2xl:h-[50px] w-full shrink px-[10px] rounded-full
+  @apply flex items-center gap-[10px] lg:gap-2 3xl:gap-[10px] h-[50px] lg:h-[42px] 3xl:h-[50px] w-full shrink px-[10px] rounded-full
          bg-white/10 border border-white/30 backdrop-blur-[10px] cursor-text;
 }
 
 .navbar-search--desktop {
-  @apply hidden lg:flex lg:flex-1 lg:min-w-[200px] lg:max-w-[320px] 2xl:flex-none 2xl:w-[360px] 2xl:max-w-none;
+  @apply hidden lg:flex lg:flex-1 lg:min-w-[200px] lg:max-w-[320px] 3xl:flex-none 3xl:w-[360px] 3xl:max-w-none;
 }
 
 .navbar-mobile-search {
@@ -585,7 +588,7 @@ body {
 }
 
 .navbar-search-input {
-  @apply w-full h-full min-w-0 bg-transparent border-0 outline-none text-[14px] lg:text-[13px] 2xl:text-[14px] text-white placeholder:text-white text-ellipsis;
+  @apply w-full h-full min-w-0 bg-transparent border-0 outline-none text-[14px] lg:text-[13px] 3xl:text-[14px] text-white placeholder:text-white text-ellipsis;
 }
 
 .navbar-search-filter {
@@ -595,11 +598,11 @@ body {
 /* Language */
 
 .navbar-lang {
-  @apply flex items-center gap-[6px] lg:gap-1 2xl:gap-[6px] h-[50px] lg:h-[42px] 2xl:h-[50px] bg-transparent border-0 p-0 cursor-pointer;
+  @apply flex items-center gap-[6px] lg:gap-1 3xl:gap-[6px] h-[50px] lg:h-[42px] 3xl:h-[50px] bg-transparent border-0 p-0 cursor-pointer;
 }
 
 .navbar-lang-value {
-  @apply text-[16px] lg:text-[14px] 2xl:text-[16px] leading-normal font-semibold text-white;
+  @apply text-[16px] lg:text-[14px] 3xl:text-[16px] leading-normal font-semibold text-white;
 }
 
 .navbar-lang-caret {
@@ -609,14 +612,14 @@ body {
 /* Buttons */
 
 .navbar-btn-outline {
-  @apply flex items-center justify-center h-[50px] px-5 lg:h-[42px] lg:px-4 2xl:h-[50px] 2xl:px-5 rounded-full border-2 border-white bg-transparent
-         text-[16px] lg:text-[14px] 2xl:text-[16px] leading-normal font-semibold text-white whitespace-nowrap cursor-pointer
+  @apply flex items-center justify-center h-[50px] px-5 lg:h-[42px] lg:px-4 3xl:h-[50px] 3xl:px-5 rounded-full border-2 border-white bg-transparent
+         text-[16px] lg:text-[14px] 3xl:text-[16px] leading-normal font-semibold text-white whitespace-nowrap cursor-pointer
          hover:bg-white/10 transition-colors;
 }
 
 .navbar-btn-solid {
-  @apply flex items-center justify-center h-[50px] px-5 lg:h-[42px] lg:px-4 2xl:h-[50px] 2xl:px-5 rounded-full border-0 bg-white
-         text-[16px] lg:text-[14px] 2xl:text-[16px] leading-normal font-semibold text-primary whitespace-nowrap cursor-pointer
+  @apply flex items-center justify-center h-[50px] px-5 lg:h-[42px] lg:px-4 3xl:h-[50px] 3xl:px-5 rounded-full border-0 bg-white
+         text-[16px] lg:text-[14px] 3xl:text-[16px] leading-normal font-semibold text-primary whitespace-nowrap cursor-pointer
          hover:bg-primary-light transition-colors;
 }
 
@@ -625,7 +628,7 @@ body {
 }
 
 .navbar-auth {
-  @apply hidden lg:flex items-center gap-5 lg:gap-3 2xl:gap-5;
+  @apply hidden lg:flex items-center gap-5 lg:gap-3 3xl:gap-5;
 }
 
 /* Mobile menu */
